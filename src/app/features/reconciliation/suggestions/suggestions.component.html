@@ -1,0 +1,50 @@
+<div class="container">
+    <h2>Bandeja de Historicos</h2>
+    <hr>
+  
+    <div *ngIf="isLoading">Cargando...</div>
+  
+    <div *ngIf="!isLoading && suggestions.length === 0">
+      No eisten conciliaciones pendientes para mostrar.
+    </div>
+
+    <button class="btn btn-success" (click)="exportToExcel(suggestions, 'Reporte_Conciliacion')">
+      Exportar a Excel
+    </button>
+  
+    <table *ngIf="!isLoading && suggestions.length > 0">
+      <thead>
+        <tr>
+          <th>Nivel</th>
+          <th>Banco</th>
+          <th>Monto</th>
+          <th>CFDI</th>
+          <th>Conciliado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of suggestions">
+          <td>
+            <span class="badge" [ngClass]="getScoreClass(item.confidenceScore)">
+              {{ item.confidenceScore * 100 }}%
+            </span>
+          </td>
+          <td>
+            <strong>{{ item.bankDescription }}</strong><br>
+            <small>{{ item.bankDate | date:'shortDate' }}</small>
+          </td>
+          <td>{{ item.amount | currency }}</td>
+          <td>
+            <strong>{{ item.invoiceRfc }}</strong><br>
+            <small>{{ item.invoiceDate | date:'shortDate' }}</small>
+          </td>
+          <td>
+            <!--<button (click)="onApprove(item.reconciliationId)" class="btn-approve">✓</button>
+            <button (click)="onReject(item.reconciliationId)" class="btn-reject">✕</button>-->
+
+            <button  class="btn-approve">✓</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

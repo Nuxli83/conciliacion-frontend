@@ -1,0 +1,28 @@
+<div class="d-flex flex-column p-3 bg-dark text-white vh-100" style="width: 250px;">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <span class="fs-4">Conciliaciones</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a routerLink="/conciliacion/sugerencias" class="nav-link text-white" routerLinkActive="active">
+          Bandeja de Historicos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/conciliacion/cargar" class="nav-link text-white" routerLinkActive="active">
+          Cargar Archivos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/conciliacion/procesar" class="nav-link text-white" routerLinkActive="active">
+          Procesar conciliación
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()" class="nav-link text-white" routerLinkActive="active">
+          Cerrar sesión
+        </a>
+      </li>
+    </ul>
+  </div>

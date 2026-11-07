@@ -1,0 +1,59 @@
+<div class="upload-container">
+    <div class="header">
+      <h2>Cargar Documentos</h2>
+      <p>Sube tu estado de cuenta y los comprobantes fiscales para iniciar el análisis automático.</p>
+    </div>
+  
+    <div *ngIf="uploadSuccess" class="alert-success">
+      ✓ Documentos procesados con éxito. El motor de conciliación está analizando los datos.
+    </div>
+  
+    <div class="grid-layout">
+      <div class="upload-card">
+        <h3>1. Estado de Cuenta (PDF)</h3>
+        <p class="subtitle">Selecciona el PDF emitido por el banco.</p>
+        
+        <div class="file-drop-area" [class.has-file]="bankFiles.length > 0">
+          <input type="file" multiple (change)="onBankFilesSelected($event)" accept=".pdf" />
+          <label class="upload-label">
+            <span>{{ bankFiles.length > 0 ? 'Agregar más archivos' : 'Haz clic para seleccionar PDF(s)' }}</span>
+          </label>
+        </div>
+        
+        <div *ngFor="let file of bankFiles; let i = index" class="file-item">
+          <span class="file-name">{{ file.name }}</span>
+          
+          <button class="btn-remove" (click)="removeBankFile(i)" title="Eliminar">X</button>
+        </div>
+      </div>
+  
+      <div class="upload-card">
+        <h3>2. Facturas (XML / ZIP)</h3>
+        <p class="subtitle">Selecciona uno o múltiples archivos de facturación.</p>
+        
+        <div class="file-drop-area" [class.has-file]="invoiceFiles.length > 0">
+          <input type="file" #invoicesInput id="invoicesInput" accept=".xml,.zip" multiple (change)="onInvoiceFilesSelected($event)" hidden>
+          <label for="invoicesInput" class="upload-label">
+            <span class="icon">📑</span>
+            <span>{{ invoiceFiles.length > 0 ? 'Agregar más archivos' : 'Haz clic para seleccionar XML/ZIP' }}</span>
+          </label>
+        </div>
+  
+        <div class="file-list" *ngIf="invoiceFiles.length > 0">
+          <div class="file-item" *ngFor="let file of invoiceFiles; let i = index">
+            <span class="file-name">{{ file.name }}</span>
+            <button class="btn-remove" (click)="removeInvoiceFile(i)" title="Eliminar">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="actions">
+      <button 
+        class="btn-primary" 
+        [disabled]="!bankFiles || invoiceFiles.length === 0 || isUploading"
+        (click)="onSubmit()">
+        {{ isUploading ? 'Procesando documentos...' : 'Cargar información' }}
+      </button>
+    </div>
+  </div>

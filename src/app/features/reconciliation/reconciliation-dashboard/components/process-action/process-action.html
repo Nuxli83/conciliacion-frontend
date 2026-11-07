@@ -1,0 +1,19 @@
+<div class="text-center py-3">
+  <h2 class="h4 fw-bold text-dark mb-3">¿Listo para procesar la conciliación bancaria?</h2>
+  <p class="text-muted mb-4">El sistema cruzará automáticamente las facturas con los movimientos bancarios cargados.</p>
+  
+  <button 
+    (click)="onExecute()" 
+    [disabled]="isProcessing"
+    class="btn btn-primary btn-lg px-5 py-3 fw-bold rounded-pill shadow d-inline-flex align-items-center justify-content-center gap-2 transition-all">
+    
+    <div *ngIf="isProcessing" class="spinner-border spinner-border-sm text-light" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    
+    <i *ngIf="!isProcessing" class="bi bi-play-circle-fill fs-5"></i>
+    
+    <span>{{ isProcessing ? 'Ejecutando algoritmo de cruce...' : 'Ejecutar Conciliación Automática' }}</span>
+    
+  </button>
+</div>

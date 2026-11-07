@@ -1,0 +1,19 @@
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" *ngIf="metrics">
+    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+      <h3 class="text-xs font-medium text-gray-500 uppercase">Monto Conciliado</h3>
+      <p class="text-2xl font-bold text-gray-900 mt-2">{{ metrics.totalMatchedAmount | currency }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-yellow-500">
+      <h3 class="text-xs font-medium text-gray-500 uppercase">Monto Pendiente</h3>
+      <p class="text-2xl font-bold text-gray-900 mt-2">{{ metrics.totalPendingAmount | currency }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-indigo-500">
+      <h3 class="text-xs font-medium text-gray-500 uppercase">XMLs Procesados</h3>
+      <p class="text-2xl font-bold text-gray-900 mt-2">{{ metrics.totalInvoicesProcessed }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-teal-500">
+      <h3 class="text-xs font-medium text-gray-500 uppercase">Eficiencia</h3>
+      <p class="text-2xl font-bold text-gray-900 mt-2">{{ metrics.matchEfficiencyPercentage }}%</p>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+<div *ngIf="summary" class="bg-white p-6 rounded-lg shadow mb-8 border border-indigo-100 bg-gradient-to-r from-indigo-50 to-white">
+    <h3 class="text-lg font-bold text-indigo-900 mb-4">Resultado del Último Proceso</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div>
+        <span class="block text-sm text-gray-500">Transacciones Banco</span>
+        <span class="text-xl font-semibold text-gray-800">{{ summary.totalBankTransactions }}</span>
+      </div>
+      <div>
+        <span class="block text-sm text-gray-500">Cruces Exitosos</span>
+        <span class="text-xl font-semibold text-green-600">✅ {{ summary.successfullyMatched }}</span>
+      </div>
+      <div>
+        <span class="block text-sm text-gray-500">Por Conciliar Manual</span>
+        <span class="text-xl font-semibold text-yellow-600">⚠️ {{ summary.pendingTransactions }}</span>
+      </div>
+      <div>
+        <span class="block text-sm text-gray-500">Monto Emparejado</span>
+        <span class="text-xl font-bold text-gray-900">{{ summary.totalAmountMatched | currency }}</span>
+      </div>
+    </div>
+  </div>

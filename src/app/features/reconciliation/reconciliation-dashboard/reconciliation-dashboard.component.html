@@ -1,0 +1,45 @@
+<div class="container-fluid py-5 bg-light min-vh-screen">
+    <div class="container">
+      
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+        <h1 class="h2 fw-bold text-dark m-0">Panel de Conciliación</h1>
+        <span *ngIf="metrics" class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill fs-6">
+          Periodo: {{ metrics.currentMonth }}
+        </span>
+      </div>
+    
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-secondary mb-3" role="status" style="width: 3rem; height: 3rem;">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="text-muted fw-medium placeholder-glow">
+          <span class="placeholder col-3">Cargando paneles financieros...</span>
+        </p>
+      </div>
+    
+      <div *ngIf="!isLoading">
+        
+        <app-metric-cards [metrics]="metrics"></app-metric-cards>
+
+        <app-pending-grid [pendingData]="pendingData"></app-pending-grid>
+    
+        <app-process-action 
+          [isProcessing]="isProcessing" 
+          (startReconciliation)="onProcessReconciliation()">
+        </app-process-action>
+    
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show shadow-sm text-center mb-4" role="alert">
+          <i class="bi bi-check-circle-fill me-2"></i> {{ successMessage }}
+        </div>
+        
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show shadow-sm text-center mb-4" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage }}
+        </div>
+    
+        <app-summary-result [summary]="lastSummary"></app-summary-result>
+    
+       <!--<app-history-table [historyList]="history"></app-history-table>-->
+    
+      </div>
+    </div>
+  </div>

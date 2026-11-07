@@ -1,0 +1,8 @@
+.container { padding: 20px; font-family: sans-serif; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+.badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+.badge-high { background-color: #007bff; } /* Azul para coincidencia exacta de monto */
+.badge-medium { background-color: #fd7e14; } /* Naranja para discrepancia de centavos */
+.btn-approve { background-color: #28a745; color: white; border: none; padding: 6px 12px; margin-right: 5px; cursor: pointer; border-radius: 4px; }
+.btn-reject { background-color: #dc3545; color: white; border: none; padding: 6px 12px; cursor: pointer; border-radius: 4px; }
